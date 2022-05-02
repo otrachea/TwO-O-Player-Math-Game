@@ -1,0 +1,25 @@
+Description
+Create a 2-Player math game where players take turns to answer simple math addition problems. 
+A new math question is generated for each turn by picking two numbers between 1 and 20. The
+player whose turn it is is prompted the question and must answer correctly or lose a life.
+
+start 3 lives
+lose 1 life for incorrect answer
+at end of round, output life for both players
+game ends when one player loses all life
+
+Classes
+- Player
+  - id
+  - life
+  + 
+- Question
+  - id
+  - description
+  - answer
+
+- Game
+  - current_player
+  + get_input
+  + start - loops until one of players lives is 0
+  + pick_question
