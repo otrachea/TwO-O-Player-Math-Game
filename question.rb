@@ -3,7 +3,9 @@ class Question
   attr_reader :description, :answer
 
   def initialize
-    [@description, @answer] = create_question  
+    question = create_question  
+    @description = question[0]
+    @answer = question[1]
   end
 
   private
