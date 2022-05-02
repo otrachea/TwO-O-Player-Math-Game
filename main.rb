@@ -9,11 +9,11 @@ class Main
 
   def start
 
-    turns = 0
+    turns = 1
 
     while true do
-      puts "#{"=" * 10} NEW TURN #{"=" * 10}"
-      current_player = @players[turns % 2]
+      puts "#{"=" * 10} TURN #{turns} #{"=" * 10}"
+      current_player = @players[(turns + 1) % 2]
 
       question = Question.new
 
