@@ -8,14 +8,16 @@ class Main
   end
 
   def start
+
     turns = 0
-    while turns < 3 do
+
+    while true do
       puts "#{"=" * 10} NEW TURN #{"=" * 10}"
-      @current_player = @players[turns % 2]
+      current_player = @players[turns % 2]
 
       question = Question.new
 
-      puts "Player #{@current_player.id}: #{question.description}"
+      puts "Player #{current_player.id}: #{question.description}"
       answer = Integer(gets.chomp) rescue nil
 
       while answer == nil do
@@ -23,12 +25,30 @@ class Main
         answer = Integer(gets.chomp) rescue nil
       end
 
-      puts answer == question.answer ?
-        "Player #{@current_player.id}: Correct answer!" :
-        "Player #{@current_player.id}: Wrong answer!"
+      if answer == question.answer 
+        puts "Player #{current_player.id}: Correct answer!" 
+      else
+        puts "Player #{current_player.id}: Wrong answer!"
+        current_player.lose_life
+      end
+      
+      if @players[0].is_dead 
+        puts "Player 2 wins with a score of #{@players[1].life}/3"
+        break
+      end
+
+      if @players[1].is_dead
+        puts "Player 1 wins with a score of #{@players[0].life}/3"
+        break
+      end
+        
+      puts "P1: #{@players[0].life}/3 vs P2: #{@players[1].life}/3"
 
       turns += 1
     end
+
+    puts "#{"=" * 10} GAME OVER #{"=" * 10}"
+    puts "Good bye!"
   end
 
 end
